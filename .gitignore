@@ -351,3 +351,5 @@ MigrationBackup/
 
 #Custom ignore
 Debug/
+*.ob
+sfml-app
