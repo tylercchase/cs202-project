@@ -26,4 +26,13 @@ void Game::processEvents(){
         {
              fish.sprite.move(.1,0);
         }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+            fish.sprite.move(-0.1,0);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+            fish.sprite.move(0,0.1);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+            fish.sprite.move(0,-0.1);
+        }
 }
