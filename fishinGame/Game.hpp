@@ -10,9 +10,12 @@ class Game {
         // ~Game();
         void run();
         Fish fish;
+        sf::RenderWindow window{sf::VideoMode(1000, 600), "Epic Fish Fighting Game"};
+
     private:
         void processKeys();
         void update();
+        void render();
 };
 
 #endif

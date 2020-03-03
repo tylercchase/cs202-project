@@ -1,7 +1,6 @@
 #include "Game.hpp"
 
 void Game::run(){
-    sf::RenderWindow window(sf::VideoMode(1000, 600), "SFML works!");
 
     while (window.isOpen())
     {
@@ -14,9 +13,7 @@ void Game::run(){
             
         }
         
-        window.clear();
-        window.draw(fish.sprite);
-        window.display();
+        
     }
 
 }
@@ -37,5 +34,10 @@ void Game::processKeys(){
         }
 }
 void Game::update(){
-    
+
+}
+void Game::render(){
+        window.clear();
+        window.draw(fish.sprite);
+        window.display();
 }
