@@ -37,6 +37,9 @@ void Game::processKeys(){
             if ( fishBounding.getPosition().x + 50 >= window.getSize().x ) { }
             else {
                 fishBounding.move(.1,0);
+                for(auto &fish: fishSwarm){
+                    fish.sprite.move(.1,0);
+                }
             }
 
             fishBounding.setTextureRect(sf::IntRect(300, 0, -300, 300));;
@@ -47,6 +50,9 @@ void Game::processKeys(){
             if ( fishBounding.getPosition().x <= 0 ) {
             }else{
                 fishBounding.move(-0.1,0);
+                for(auto &fish: fishSwarm){
+                    fish.sprite.move(-.1,0);
+                }
             }
             fishBounding.setTextureRect(sf::IntRect(0, 0, 300, 300));;
         }
@@ -55,6 +61,9 @@ void Game::processKeys(){
             if ( fishBounding.getPosition().y + 50 >= window.getSize().y ) { }
             else {
                 fishBounding.move(0,0.1);
+                for(auto &fish: fishSwarm){
+                    fish.sprite.move(0,0.1);
+                }
             }
         }
         //Up
@@ -64,6 +73,9 @@ void Game::processKeys(){
             }
             else {
                 fishBounding.move(0,-0.1);
+                for(auto &fish: fishSwarm){
+                    fish.sprite.move(0,-0.1);
+                }
             }
 
         }
@@ -103,6 +115,9 @@ void Game::processKeys(){
             }
 
         }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::F)){
+            spawnFish();
+        }
 }
 void Game::update(){
     for(auto& fish : fishSwarm){
@@ -125,4 +140,15 @@ void Game::render(){
         }
         window.draw(fisherman.sprite);
         window.display();
+}
+void Game::spawnFish(){
+    fishSwarm.push_back(Fish{});
+    srand (time(NULL));
+
+    for(auto &fish: fishSwarm){
+        if(!fish.sprite.getGlobalBounds().intersects(fishBounding.getGlobalBounds())){
+            fish.sprite.setPosition(fishBounding.getPosition().x + ((rand() % 150 + 1) - (rand() % 300 + 1)), fishBounding.getPosition().y + (rand() % 150 + 1)- (rand() % 300 + 1));
+        }
+
+    }
 }

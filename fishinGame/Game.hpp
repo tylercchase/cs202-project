@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <random>
 #include "Fish.hpp"
 #include "Fisherman.hpp"
 class Game {
@@ -10,6 +11,7 @@ class Game {
         Game(){
             fisherman.sprite.setPosition(500,300);
             fishBounding.setOrigin(150,150);
+            
         }
         // ~Game();
         void run();
@@ -23,7 +25,7 @@ class Game {
         void update();
         void render();
         void processEvents();
-        void updateFish();
+        void spawnFish();
 };
 
 #endif

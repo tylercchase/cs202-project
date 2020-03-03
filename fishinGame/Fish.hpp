@@ -11,17 +11,18 @@ class Fish{
         float rotation; 
         sf::RectangleShape shape;
         sf::Sprite sprite;
+        sf::Texture fishTexture;
 
         Fish(){
-            if(!fishTexture.loadFromFile("fish.png")){
-                std::cout << "Can't load fish" << std::endl;
-            }
+                if(!fishTexture.loadFromFile("fish.png")){
+                        std::cout << "Can't load fish" << std::endl;
+                }
+            
             sprite.setTexture(fishTexture);
             sprite.setScale(0.2,0.2);
         }
         
     private:
-        sf::Texture fishTexture;
 };
 
 #endif
