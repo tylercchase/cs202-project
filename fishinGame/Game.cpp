@@ -45,10 +45,13 @@ void Game::processKeys(){
         }
 }
 void Game::update(){
-    // auto a = fish.sprite.getGlobalBounds().intersects(window);
+    if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
+        std::cout << "Fish collided with fisherman!" << std::endl;
+    }
 }
 void Game::render(){
         window.clear();
         window.draw(fish.sprite);
+        window.draw(fisherman.sprite);
         window.display();
 }

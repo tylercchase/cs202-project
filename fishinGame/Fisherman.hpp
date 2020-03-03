@@ -13,8 +13,8 @@ class Fisherman{
         sf::Sprite sprite;
 
         Fisherman(){
-            if(!fishTexture.loadFromFile("fish.png")){
-                std::cout << "Can't load fish" << std::endl;
+            if(!fishTexture.loadFromFile("fisherman.png")){
+                std::cout << "Can't load fisherman" << std::endl;
             }
             sprite.setTexture(fishTexture);
             sprite.setScale(0.2,0.2);

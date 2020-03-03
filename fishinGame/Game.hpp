@@ -6,7 +6,9 @@
 #include "Fisherman.hpp"
 class Game {
     public:
-        // Game();
+        Game(){
+            fisherman.sprite.setPosition(500,300);
+        }
         // ~Game();
         void run();
         Fish fish;
