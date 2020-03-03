@@ -19,7 +19,6 @@ class Fish{
             sprite.setTexture(fishTexture);
             sprite.setScale(0.2,0.2);
         }
-
     private:
         sf::Texture fishTexture;
 };
