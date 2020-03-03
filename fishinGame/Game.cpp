@@ -33,9 +33,13 @@ void Game::processKeys(){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
              fish.sprite.move(.1,0);
+            fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
+
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
             fish.sprite.move(-0.1,0);
+            fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
+
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
             fish.sprite.move(0,0.1);
