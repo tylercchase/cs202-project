@@ -34,36 +34,36 @@ void Game::processKeys(){
         //Right
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
-            if ( fish.sprite.getPosition().x + 50 >= window.getSize().x ) { }
+            if ( fishBounding.getPosition().x + 50 >= window.getSize().x ) { }
             else {
-                fish.sprite.move(.1,0);
+                fishBounding.move(.1,0);
             }
 
-            fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
+            fishBounding.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
         }
         //Left
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-            if ( fish.sprite.getPosition().x <= 0 ) {
+            if ( fishBounding.getPosition().x <= 0 ) {
             }else{
-                fish.sprite.move(-0.1,0);
+                fishBounding.move(-0.1,0);
             }
-            fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
+            fishBounding.setTextureRect(sf::IntRect(0, 0, 300, 300));;
         }
         //Down
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-            if ( fish.sprite.getPosition().y + 50 >= window.getSize().y ) { }
+            if ( fishBounding.getPosition().y + 50 >= window.getSize().y ) { }
             else {
-                fish.sprite.move(0,0.1);
+                fishBounding.move(0,0.1);
             }
         }
         //Up
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-            if ( fish.sprite.getPosition().y <= 0 ) {
+            if ( fishBounding.getPosition().y <= 0 ) {
 
             }
             else {
-                fish.sprite.move(0,-0.1);
+                fishBounding.move(0,-0.1);
             }
 
         }
@@ -105,13 +105,24 @@ void Game::processKeys(){
         }
 }
 void Game::update(){
-    if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
-        std::cout << "Fish collided with fisherman!" << std::endl;
+    for(auto& fish : fishSwarm){
+        if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
+            std::cout << "Fish collided with fisherman!" << std::endl;
+        }
+        while(!fish.sprite.getGlobalBounds().intersects(fishBounding.getGlobalBounds())){
+            fish.sprite.setPosition(fishBounding.getPosition().x, fishBounding.getPosition().y);
+        }
     }
+    
 }
 void Game::render(){
         window.clear();
-        window.draw(fish.sprite);
+        fishBounding.setFillColor(sf::Color::Green);
+        fishBounding.setRadius(150.0f);
+        window.draw(fishBounding);
+        for(auto &fish : fishSwarm){
+            window.draw(fish.sprite);
+        }
         window.draw(fisherman.sprite);
         window.display();
 }
