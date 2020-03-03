@@ -16,6 +16,7 @@ class Game {
         void processKeys();
         void update();
         void render();
+        void processEvents();
 };
 
 #endif

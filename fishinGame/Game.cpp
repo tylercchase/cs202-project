@@ -1,23 +1,34 @@
 #include "Game.hpp"
 
 void Game::run(){
+    sf::Clock clock;
+    sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    const float fps = 60.0f;
+    sf::Time timePerFrame = sf::seconds(1.0f/fps);
 
     while (window.isOpen())
     {
         processKeys();
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-            
+        timeSinceLastUpdate += clock.restart();
+        while(timeSinceLastUpdate > timePerFrame){
+            timeSinceLastUpdate -= timePerFrame;
+            processEvents();
+            update();
         }
-        
+        render();
         
     }
 
 }
-
+void Game::processEvents(){
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window.close();
+        
+    }
+}
 void Game::processKeys(){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
