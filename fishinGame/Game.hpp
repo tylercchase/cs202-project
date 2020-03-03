@@ -11,7 +11,8 @@ class Game {
         void run();
         Fish fish;
     private:
-        void processEvents();
+        void processKeys();
+        void update();
 };
 
 #endif

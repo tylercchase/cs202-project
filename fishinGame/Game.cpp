@@ -5,7 +5,7 @@ void Game::run(){
 
     while (window.isOpen())
     {
-        processEvents();
+        processKeys();
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -21,7 +21,7 @@ void Game::run(){
 
 }
 
-void Game::processEvents(){
+void Game::processKeys(){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
              fish.sprite.move(.1,0);
@@ -35,4 +35,7 @@ void Game::processEvents(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
             fish.sprite.move(0,-0.1);
         }
+}
+void Game::update(){
+    
 }
