@@ -8,11 +8,11 @@ void Game::run(){
 
     while (window.isOpen())
     {
+        processEvents();
         processKeys();
         timeSinceLastUpdate += clock.restart();
         while(timeSinceLastUpdate > timePerFrame){
             timeSinceLastUpdate -= timePerFrame;
-            processEvents();
             update();
         }
         render();
