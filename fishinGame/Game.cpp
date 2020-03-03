@@ -45,7 +45,7 @@ void Game::processKeys(){
         }
 }
 void Game::update(){
-
+    // auto a = fish.sprite.getGlobalBounds().intersects(window);
 }
 void Game::render(){
         window.clear();
