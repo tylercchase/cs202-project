@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+static sf::Texture fishTexture;
+
 class Fish{
     public:
         int x;
@@ -11,7 +13,6 @@ class Fish{
         float rotation; 
         sf::RectangleShape shape;
         sf::Sprite sprite;
-        sf::Texture fishTexture;
 
         Fish(){
                 if(!fishTexture.loadFromFile("fish.png")){
