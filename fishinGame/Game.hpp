@@ -7,7 +7,7 @@
 #include "Fish.hpp"
 #include "Fisherman.hpp"
 #include "Food.hpp"
-
+#include "Background.hpp"
 class Game {
     public:
         Game(){
@@ -20,7 +20,7 @@ class Game {
         sf::Time lastFoodTime;
         sf::Clock clock;
         sf::Time foodFrequency = sf::seconds(5);
-
+        Background background;
         std::vector<Fish> fishSwarm{1};
         std::vector<Food> foodGroup;
         

@@ -158,6 +158,7 @@ void Game::update(){
 }
 void Game::render(){
         window.clear();
+        window.draw(background.sprite);
         fishBounding.setRadius(100.0f);
         for(auto &fish : fishSwarm){
             window.draw(fish.sprite);
