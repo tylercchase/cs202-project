@@ -13,13 +13,17 @@ class Game {
         Game(){
             fisherman.sprite.setPosition(500,300);
             fishBounding.setOrigin(150,150);
-            
         }
         // ~Game();
         void run();
         sf::CircleShape fishBounding;
+        sf::Time lastFoodTime;
+        sf::Clock clock;
+        sf::Time foodFrequency = sf::seconds(5);
+
         std::vector<Fish> fishSwarm{1};
         std::vector<Food> foodGroup;
+        
         Fisherman fisherman;
         sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game"};
                 

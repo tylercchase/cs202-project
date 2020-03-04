@@ -8,10 +8,6 @@ static sf::Texture foodTexture;
 
 class Food {
     public:
-        int x;
-        int y;
-        float rotation; 
-        sf::RectangleShape shape;
         sf::Sprite sprite;
 
         Food(){

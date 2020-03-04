@@ -6,10 +6,6 @@
 
 class Fisherman{
     public:
-        int x;
-        int y;
-        float rotation; 
-        sf::RectangleShape shape;
         sf::Sprite sprite;
 
         Fisherman(){
@@ -17,7 +13,7 @@ class Fisherman{
                 std::cout << "Can't load fisherman" << std::endl;
             }
             sprite.setTexture(fishTexture);
-            sprite.setScale(0.2,0.2);
+            sprite.setScale(0.3,0.3);
         }
     private:
         sf::Texture fishTexture;

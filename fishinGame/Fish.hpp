@@ -8,10 +8,6 @@ static sf::Texture fishTexture;
 
 class Fish{
     public:
-        int x;
-        int y;
-        float rotation; 
-        sf::RectangleShape shape;
         sf::Sprite sprite;
 
         Fish(){
