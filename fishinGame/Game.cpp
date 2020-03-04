@@ -29,6 +29,9 @@ void Game::processEvents(){
         if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::F){
             spawnFish();
         }
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::V){
+            spawnFood();
+        }
     }
 }
 void Game::processKeys(){
@@ -120,12 +123,19 @@ void Game::processKeys(){
         
 }
 void Game::update(){
-    int counter = 0;
+    int counter{0};
     for(auto& fish : fishSwarm){
         if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
             std::cout << "Fish collided with fisherman!" << std::endl;
             fishSwarm.erase(fishSwarm.begin() + counter);
-
+        }
+        int counterFood{0};
+        for(auto &food : foodGroup){
+            if(fish.sprite.getGlobalBounds().intersects(food.sprite.getGlobalBounds())){
+                std::cout << "Fish collided with food!" << std::endl;
+                foodGroup.erase(foodGroup.begin() + counterFood);
+            }
+            counterFood++;
         }
         while(!fish.sprite.getGlobalBounds().intersects(fishBounding.getGlobalBounds())){
             fish.sprite.setPosition(fishBounding.getPosition().x, fishBounding.getPosition().y);
@@ -142,6 +152,9 @@ void Game::render(){
         for(auto &fish : fishSwarm){
             window.draw(fish.sprite);
         }
+        for(auto &food : foodGroup){
+            window.draw(food.sprite);
+        }
         window.draw(fisherman.sprite);
         window.display();
 }
@@ -155,4 +168,10 @@ void Game::spawnFish(){
         }
 
     }
+}
+void Game::spawnFood(){
+    foodGroup.push_back(Food{});
+    auto &food = foodGroup.back();
+    srand (time(NULL));
+    food.sprite.setPosition(rand() % 1200 + 50, rand() % 700 + 50);
 }

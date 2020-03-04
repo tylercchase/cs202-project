@@ -6,6 +6,8 @@
 #include <random>
 #include "Fish.hpp"
 #include "Fisherman.hpp"
+#include "Food.hpp"
+
 class Game {
     public:
         Game(){
@@ -17,6 +19,7 @@ class Game {
         void run();
         sf::CircleShape fishBounding;
         std::vector<Fish> fishSwarm{1};
+        std::vector<Food> foodGroup;
         Fisherman fisherman;
         sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game"};
                 
@@ -26,6 +29,7 @@ class Game {
         void render();
         void processEvents();
         void spawnFish();
+        void spawnFood();
 };
 
 #endif
