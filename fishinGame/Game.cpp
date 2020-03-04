@@ -128,12 +128,16 @@ void Game::update(){
         if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
             std::cout << "Fish collided with fisherman!" << std::endl;
             fishSwarm.erase(fishSwarm.begin() + counter);
+            if(fishSwarm.size() == 0){
+                //Initiate fisherman win
+            }
         }
         int counterFood{0};
         for(auto &food : foodGroup){
             if(fish.sprite.getGlobalBounds().intersects(food.sprite.getGlobalBounds())){
                 std::cout << "Fish collided with food!" << std::endl;
                 foodGroup.erase(foodGroup.begin() + counterFood);
+                spawnFish();
             }
             counterFood++;
         }
