@@ -120,20 +120,24 @@ void Game::processKeys(){
         
 }
 void Game::update(){
+    int counter = 0;
     for(auto& fish : fishSwarm){
         if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
             std::cout << "Fish collided with fisherman!" << std::endl;
+            fishSwarm.erase(fishSwarm.begin() + counter);
+
         }
         while(!fish.sprite.getGlobalBounds().intersects(fishBounding.getGlobalBounds())){
             fish.sprite.setPosition(fishBounding.getPosition().x, fishBounding.getPosition().y);
         }
+        counter++;
     }
     
 }
 void Game::render(){
         window.clear();
         fishBounding.setFillColor(sf::Color::Green);
-        fishBounding.setRadius(150.0f);
+        fishBounding.setRadius(100.0f);
         window.draw(fishBounding);
         for(auto &fish : fishSwarm){
             window.draw(fish.sprite);
@@ -147,7 +151,7 @@ void Game::spawnFish(){
 
     for(auto &fish: fishSwarm){
         if(!fish.sprite.getGlobalBounds().intersects(fishBounding.getGlobalBounds())){
-            fish.sprite.setPosition(fishBounding.getPosition().x + ((rand() % 150 + 1) - (rand() % 300 + 1)), fishBounding.getPosition().y + (rand() % 150 + 1)- (rand() % 300 + 1));
+            fish.sprite.setPosition(fishBounding.getPosition().x + ((rand() % 100 + 1) - (rand() % 200 + 1)), fishBounding.getPosition().y + (rand() % 100 + 1)- (rand() % 200 + 1));
         }
 
     }
