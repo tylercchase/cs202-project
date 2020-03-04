@@ -26,7 +26,9 @@ void Game::processEvents(){
     {
         if (event.type == sf::Event::Closed)
             window.close();
-        
+        if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::F){
+            spawnFish();
+        }
     }
 }
 void Game::processKeys(){
@@ -115,9 +117,7 @@ void Game::processKeys(){
             }
 
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::F)){
-            spawnFish();
-        }
+        
 }
 void Game::update(){
     for(auto& fish : fishSwarm){
