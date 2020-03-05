@@ -16,7 +16,6 @@ void Game::run(){
             update();
         }
         render();
-        
     }
 
 }
@@ -41,9 +40,9 @@ void Game::processKeys(){
         {
             if ( fishBounding.getPosition().x + 50 >= window.getSize().x ) { }
             else {
-                fishBounding.move(.1,0);
+                fishBounding.move(.2,0);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(.1,0);
+                    fish.sprite.move(.2,0);
                     fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
                 }
@@ -55,9 +54,9 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
             if ( fishBounding.getPosition().x <= 0 ) {
             }else{
-                fishBounding.move(-0.1,0);
+                fishBounding.move(-0.2,0);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(-.1,0);
+                    fish.sprite.move(-.2,0);
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
                 }
@@ -67,9 +66,9 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
             if ( fishBounding.getPosition().y + 50 >= window.getSize().y ) { }
             else {
-                fishBounding.move(0,0.1);
+                fishBounding.move(0,0.2);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,0.1);
+                    fish.sprite.move(0,0.2);
                 }
             }
         }
@@ -79,9 +78,9 @@ void Game::processKeys(){
 
             }
             else {
-                fishBounding.move(0,-0.1);
+                fishBounding.move(0,-0.2);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,-0.1);
+                    fish.sprite.move(0,-0.2);
                 }
             }
 
@@ -178,10 +177,16 @@ void Game::spawnFish(){
         }
 
     }
+    if(fishSwarm.size() == 5){
+        startEatinTime();
+    }
 }
 void Game::spawnFood(){
     foodGroup.push_back(Food{});
     auto &food = foodGroup.back();
     srand (time(NULL));
     food.sprite.setPosition(rand() % 1200 + 50, rand() % 700 + 50);
+}
+void Game::startEatinTime(){
+    background.activateEatinTime();
 }

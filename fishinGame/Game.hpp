@@ -23,7 +23,7 @@ class Game {
         Background background;
         std::vector<Fish> fishSwarm{1};
         std::vector<Food> foodGroup;
-        
+        bool eatin{false};
         Fisherman fisherman;
         sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game"};
                 
@@ -34,6 +34,7 @@ class Game {
         void processEvents();
         void spawnFish();
         void spawnFood();
+        void startEatinTime();
 };
 
 #endif
