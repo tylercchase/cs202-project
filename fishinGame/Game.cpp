@@ -90,7 +90,7 @@ void Game::processKeys(){
         {
             if ( fisherman.sprite.getPosition().x + 50 >= window.getSize().x ) { }
             else {
-                fisherman.sprite.move(.08,0);
+                fisherman.sprite.move(.13,0);
             }
 
             fisherman.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
@@ -100,7 +100,7 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::J)){
             if ( fisherman.sprite.getPosition().x <= 0 ) {
             }else{
-                fisherman.sprite.move(-0.08,0);
+                fisherman.sprite.move(-0.13,0);
             }
             fisherman.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
         }
@@ -108,7 +108,7 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::K)){
             if ( fisherman.sprite.getPosition().y + 50 >= window.getSize().y ) { }
             else {
-                fisherman.sprite.move(0,0.08);
+                fisherman.sprite.move(0,0.13);
             }
         }
         //Up
@@ -117,7 +117,7 @@ void Game::processKeys(){
 
             }
             else {
-                fisherman.sprite.move(0,-0.08);
+                fisherman.sprite.move(0,-0.13);
             }
 
         }
@@ -128,7 +128,11 @@ void Game::update(){
     for(auto& fish : fishSwarm){
         if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
             std::cout << "Fish collided with fisherman!" << std::endl;
-            fishSwarm.erase(fishSwarm.begin() + counter);
+            if(!eatin){
+                fishSwarm.erase(fishSwarm.begin() + counter);
+            }else{
+                fisherman.sprite.setScale(0,0);
+            }
             if(fishSwarm.size() == 0){
                 //Initiate fisherman win
             }
@@ -157,7 +161,6 @@ void Game::update(){
 void Game::render(){
         window.clear();
         window.draw(background.sprite);
-        fishBounding.setRadius(100.0f);
         for(auto &fish : fishSwarm){
             window.draw(fish.sprite);
         }
@@ -177,7 +180,7 @@ void Game::spawnFish(){
         }
 
     }
-    if(fishSwarm.size() == 5){
+    if(fishSwarm.size() == 10){
         startEatinTime();
     }
 }
@@ -189,4 +192,5 @@ void Game::spawnFood(){
 }
 void Game::startEatinTime(){
     background.activateEatinTime();
+    eatin = true;
 }

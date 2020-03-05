@@ -13,6 +13,8 @@ class Game {
         Game(){
             fisherman.sprite.setPosition(500,300);
             fishBounding.setOrigin(150,150);
+            fishBounding.setRadius(100.0f);
+
         }
         // ~Game();
         void run();
