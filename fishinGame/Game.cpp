@@ -151,7 +151,6 @@ void Game::update(){
     lastFoodTime += clock.restart();
     if(lastFoodTime >= foodFrequency){
         spawnFood();
-        std::cout << "SPAWNING FOOD: " << std::endl;
         lastFoodTime -= foodFrequency;
     }
     

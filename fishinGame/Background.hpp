@@ -4,14 +4,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-static sf::Texture backgroundTexture;
 
 class Background{
     public:
         sf::Sprite sprite;
+        sf::Texture backgroundTexture;
 
         Background(){
-            if(!backgroundTexture.loadFromFile("background.png",sf::IntRect(0,0,1500,800))){
+            if(!backgroundTexture.loadFromFile("Background.png",sf::IntRect(0,0,1500,800))){
                     std::cout << "Can't load background" << std::endl;
             }
             
