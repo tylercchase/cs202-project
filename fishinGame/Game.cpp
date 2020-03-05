@@ -152,7 +152,7 @@ void Game::update(){
         counter++;
     }
     lastFoodTime += clock.restart();
-    if(lastFoodTime >= foodFrequency){
+    if(lastFoodTime >= foodFrequency && !eatin){
         spawnFood();
         lastFoodTime -= foodFrequency;
     }
