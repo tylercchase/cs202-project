@@ -5,7 +5,16 @@ void Game::run(){
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     const float fps = 60.0f;
     sf::Time timePerFrame = sf::seconds(1.0f/fps);
-
+    window.setPosition(sf::Vector2i(100,100));
+    sf::Font font;
+    if (!font.loadFromFile("BarlowSemiCondensed-Regular.ttf"))
+    {
+        // error...
+    }
+    board.setFont(font);
+    board.setCharacterSize(24);
+    board.setFillColor(sf::Color::Green);
+    board.setPosition(400,0);
     while (window.isOpen())
     {
         processEvents();
@@ -40,9 +49,9 @@ void Game::processKeys(){
         {
             if ( fishBounding.getPosition().x + 50 >= window.getSize().x ) { }
             else {
-                fishBounding.move(.2,0);
+                fishBounding.move(.3,0);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(.2,0);
+                    fish.sprite.move(.3,0);
                     fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
                 }
@@ -54,9 +63,9 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
             if ( fishBounding.getPosition().x <= 0 ) {
             }else{
-                fishBounding.move(-0.2,0);
+                fishBounding.move(-0.3,0);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(-.2,0);
+                    fish.sprite.move(-.3,0);
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
                 }
@@ -66,9 +75,9 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
             if ( fishBounding.getPosition().y + 50 >= window.getSize().y ) { }
             else {
-                fishBounding.move(0,0.2);
+                fishBounding.move(0,0.3);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,0.2);
+                    fish.sprite.move(0,0.3);
                 }
             }
         }
@@ -78,9 +87,9 @@ void Game::processKeys(){
 
             }
             else {
-                fishBounding.move(0,-0.2);
+                fishBounding.move(0,-0.3);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,-0.2);
+                    fish.sprite.move(0,-0.3);
                 }
             }
 
@@ -132,9 +141,10 @@ void Game::update(){
                 fishSwarm.erase(fishSwarm.begin() + counter);
             }else{
                 fisherman.sprite.setScale(0,0);
+                fishWin();
             }
             if(fishSwarm.size() == 0){
-                //Initiate fisherman win
+                fishermanWin();
             }
         }
         int counterFood{0};
@@ -156,7 +166,9 @@ void Game::update(){
         spawnFood();
         lastFoodTime -= foodFrequency;
     }
-    
+    if(eatin){
+        window.setPosition(sf::Vector2i(100 + rand() % 5, 100 + rand() % 5));
+    }
 }
 void Game::render(){
         window.clear();
@@ -168,6 +180,7 @@ void Game::render(){
             window.draw(food.sprite);
         }
         window.draw(fisherman.sprite);
+        window.draw(board);
         window.display();
 }
 void Game::spawnFish(){
@@ -193,4 +206,10 @@ void Game::spawnFood(){
 void Game::startEatinTime(){
     background.activateEatinTime();
     eatin = true;
+}
+void Game::fishWin(){
+    board.setString("fish wins!");
+}
+void Game::fishermanWin(){
+    board.setString("fisherman wins!");
 }

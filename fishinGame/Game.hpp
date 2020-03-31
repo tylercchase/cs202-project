@@ -28,6 +28,7 @@ class Game {
         bool eatin{false};
         Fisherman fisherman;
         sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game"};
+        sf::Text board;
                 
     private:
         void processKeys();
@@ -37,6 +38,8 @@ class Game {
         void spawnFish();
         void spawnFood();
         void startEatinTime();
+        void fishWin();
+        void fishermanWin();
 };
 
 #endif
