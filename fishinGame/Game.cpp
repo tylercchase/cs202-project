@@ -5,7 +5,7 @@ void Game::run(){
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     const float fps = 60.0f;
     sf::Time timePerFrame = sf::seconds(1.0f/fps);
-
+    window.setPosition(sf::Vector2i(100,100));
     while (window.isOpen())
     {
         processEvents();
@@ -40,9 +40,9 @@ void Game::processKeys(){
         {
             if ( fishBounding.getPosition().x + 50 >= window.getSize().x ) { }
             else {
-                fishBounding.move(.2,0);
+                fishBounding.move(.3,0);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(.2,0);
+                    fish.sprite.move(.3,0);
                     fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
                 }
@@ -54,9 +54,9 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
             if ( fishBounding.getPosition().x <= 0 ) {
             }else{
-                fishBounding.move(-0.2,0);
+                fishBounding.move(-0.3,0);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(-.2,0);
+                    fish.sprite.move(-.3,0);
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
                 }
@@ -66,9 +66,9 @@ void Game::processKeys(){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
             if ( fishBounding.getPosition().y + 50 >= window.getSize().y ) { }
             else {
-                fishBounding.move(0,0.2);
+                fishBounding.move(0,0.3);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,0.2);
+                    fish.sprite.move(0,0.3);
                 }
             }
         }
@@ -78,9 +78,9 @@ void Game::processKeys(){
 
             }
             else {
-                fishBounding.move(0,-0.2);
+                fishBounding.move(0,-0.3);
                 for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,-0.2);
+                    fish.sprite.move(0,-0.3);
                 }
             }
 
@@ -156,7 +156,9 @@ void Game::update(){
         spawnFood();
         lastFoodTime -= foodFrequency;
     }
-    
+    if(eatin){
+        window.setPosition(sf::Vector2i(100 + rand() % 5, 100 + rand() % 5));
+    }
 }
 void Game::render(){
         window.clear();
