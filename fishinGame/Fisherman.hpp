@@ -9,7 +9,7 @@ class Fisherman{
         sf::Sprite sprite;
 
         Fisherman(){
-            if(!fishTexture.loadFromFile("fisherman.png")){
+            if(!fishTexture.loadFromFile("boatVer3.png")){
                 std::cout << "Can't load fisherman" << std::endl;
             }
             sprite.setTexture(fishTexture);
