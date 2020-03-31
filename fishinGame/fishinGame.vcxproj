@@ -159,6 +159,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Fisherman.cpp" />
+    <ClCompile Include="Food.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
