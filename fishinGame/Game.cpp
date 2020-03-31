@@ -43,15 +43,96 @@ void Game::processEvents(){
     }
 }
 void Game::processKeys(){
-        //Fish Movement
+    //Movement Using Controller
+    bool connected = sf::Joystick::isConnected(0);
+    unsigned int buttons = sf::Joystick::getButtonCount(0);
+    if (connected) {
+        //std::cout << "Joystick = " << buttons;
+        if (sf::Joystick::isButtonPressed(0, 1)) {//down
+            std::cout << "Button 1.\n";
+            if (fishBounding.getPosition().y + 50 >= window.getSize().y) {}
+            else {
+                fishBounding.move(0, 0.3);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(0, 0.3);
+                }
+            }
+        }
+        if (sf::Joystick::isButtonPressed(0, 2)) {
+            std::cout << "Button 2.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 3)) {//up
+            std::cout << "Button 3.\n";
+            if (fishBounding.getPosition().y <= 0) {}
+            else {
+                fishBounding.move(0, -0.3);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(0, -0.3);
+                }
+            }
+        }
+        if (sf::Joystick::isButtonPressed(0, 4)) {//left
+            std::cout << "Button 4.\n";
+            if (fishBounding.getPosition().x <= 0) {
+            }
+            else {
+                fishBounding.move(-0.3, 0);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(-.3, 0);
+                    fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
+
+                }
+            }
+        }
+        if (sf::Joystick::isButtonPressed(0, 5)) {//right
+            std::cout << "Button 5.\n";
+            if (fishBounding.getPosition().x + 50 >= window.getSize().x) {}
+            else {
+                fishBounding.move(.3, 0);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(.3, 0);
+                    fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
+
+                }
+            }
+        }
+        if (sf::Joystick::isButtonPressed(0, 6)) {
+            std::cout << "Button 6.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 7)) {
+            std::cout << "Button 7.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 8)) {
+            std::cout << "Button 8.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 9)) {
+            std::cout << "Button 9.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 10)) {
+            std::cout << "Button 10.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 11)) {
+            std::cout << "Button 11.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 12)) {
+            std::cout << "Button 12.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 13)) {
+            std::cout << "Button 13.\n";
+        }
+        if (sf::Joystick::isButtonPressed(0, 14)) {
+            std::cout << "Button 14.\n";
+        }
+    }
+    else {    //Fish Movement using keyboard
         //Right
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
-            if ( fishBounding.getPosition().x + 50 >= window.getSize().x ) { }
+            if (fishBounding.getPosition().x + 50 >= window.getSize().x) {}
             else {
-                fishBounding.move(.3,0);
-                for(auto &fish: fishSwarm){
-                    fish.sprite.move(.3,0);
+                fishBounding.move(.3, 0);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(.3, 0);
                     fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
                 }
@@ -60,36 +141,37 @@ void Game::processKeys(){
 
         }
         //Left
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-            if ( fishBounding.getPosition().x <= 0 ) {
-            }else{
-                fishBounding.move(-0.3,0);
-                for(auto &fish: fishSwarm){
-                    fish.sprite.move(-.3,0);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            if (fishBounding.getPosition().x <= 0) {
+            }
+            else {
+                fishBounding.move(-0.3, 0);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(-.3, 0);
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
                 }
             }
         }
         //Down
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-            if ( fishBounding.getPosition().y + 50 >= window.getSize().y ) { }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            if (fishBounding.getPosition().y + 50 >= window.getSize().y) {}
             else {
-                fishBounding.move(0,0.3);
-                for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,0.3);
+                fishBounding.move(0, 0.3);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(0, 0.3);
                 }
             }
         }
         //Up
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-            if ( fishBounding.getPosition().y <= 0 ) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            if (fishBounding.getPosition().y <= 0) {
 
             }
             else {
-                fishBounding.move(0,-0.3);
-                for(auto &fish: fishSwarm){
-                    fish.sprite.move(0,-0.3);
+                fishBounding.move(0, -0.3);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(0, -0.3);
                 }
             }
 
@@ -97,40 +179,41 @@ void Game::processKeys(){
         //Fisherman Movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
         {
-            if ( fisherman.sprite.getPosition().x + 50 >= window.getSize().x ) { }
+            if (fisherman.sprite.getPosition().x + 50 >= window.getSize().x) {}
             else {
-                fisherman.sprite.move(.13,0);
+                fisherman.sprite.move(.13, 0);
             }
 
             fisherman.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
         }
         //Left
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::J)){
-            if ( fisherman.sprite.getPosition().x <= 0 ) {
-            }else{
-                fisherman.sprite.move(-0.13,0);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::J)) {
+            if (fisherman.sprite.getPosition().x <= 0) {
+            }
+            else {
+                fisherman.sprite.move(-0.13, 0);
             }
             fisherman.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
         }
         //Down
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::K)){
-            if ( fisherman.sprite.getPosition().y + 50 >= window.getSize().y ) { }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+            if (fisherman.sprite.getPosition().y + 50 >= window.getSize().y) {}
             else {
-                fisherman.sprite.move(0,0.13);
+                fisherman.sprite.move(0, 0.13);
             }
         }
         //Up
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
-            if ( fisherman.sprite.getPosition().y <= 0 ) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
+            if (fisherman.sprite.getPosition().y <= 0) {
 
             }
             else {
-                fisherman.sprite.move(0,-0.13);
+                fisherman.sprite.move(0, -0.13);
             }
 
         }
-        
+    }
 }
 void Game::update(){
     int counter{0};

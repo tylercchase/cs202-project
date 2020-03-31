@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <random>
+#include<SFML/Window/Joystick.hpp>
 #include "Fish.hpp"
 #include "Fisherman.hpp"
 #include "Food.hpp"
