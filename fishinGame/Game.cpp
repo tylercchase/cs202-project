@@ -6,6 +6,15 @@ void Game::run(){
     const float fps = 60.0f;
     sf::Time timePerFrame = sf::seconds(1.0f/fps);
     window.setPosition(sf::Vector2i(100,100));
+    sf::Font font;
+    if (!font.loadFromFile("BarlowSemiCondensed-Regular.ttf"))
+    {
+        // error...
+    }
+    board.setFont(font);
+    board.setCharacterSize(24);
+    board.setFillColor(sf::Color::Green);
+    board.setPosition(400,0);
     while (window.isOpen())
     {
         processEvents();
@@ -132,9 +141,10 @@ void Game::update(){
                 fishSwarm.erase(fishSwarm.begin() + counter);
             }else{
                 fisherman.sprite.setScale(0,0);
+                fishWin();
             }
             if(fishSwarm.size() == 0){
-                //Initiate fisherman win
+                fishermanWin();
             }
         }
         int counterFood{0};
@@ -170,6 +180,7 @@ void Game::render(){
             window.draw(food.sprite);
         }
         window.draw(fisherman.sprite);
+        window.draw(board);
         window.display();
 }
 void Game::spawnFish(){
@@ -195,4 +206,10 @@ void Game::spawnFood(){
 void Game::startEatinTime(){
     background.activateEatinTime();
     eatin = true;
+}
+void Game::fishWin(){
+    board.setString("fish wins!");
+}
+void Game::fishermanWin(){
+    board.setString("fisherman wins!");
 }
