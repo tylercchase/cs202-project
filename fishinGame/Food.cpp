@@ -1,6 +1,6 @@
 #include "Food.hpp"
 Food::Food(){
-    if(!foodTexture.loadFromFile("food.png")){
+    if(!foodTexture.loadFromFile("assets/food.png")){
             std::cout << "Can't load food" << std::endl;
     }
     sprite.setTexture(foodTexture);

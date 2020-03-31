@@ -1,7 +1,7 @@
 #include "Fish.hpp"
 
 Fish::Fish(){
-    if(!fishTexture.loadFromFile("fish.png")){
+    if(!fishTexture.loadFromFile("assets/fish.png")){
             std::cout << "Can't load fish" << std::endl;
     }
 
