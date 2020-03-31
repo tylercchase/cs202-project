@@ -15,6 +15,8 @@ void Game::run(){
     board.setCharacterSize(24);
     board.setFillColor(sf::Color::Green);
     board.setPosition(400,0);
+
+
     while (window.isOpen())
     {
         processEvents();

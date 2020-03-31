@@ -2,6 +2,7 @@
 #define Game_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include <random>
 #include "Fish.hpp"
@@ -14,7 +15,10 @@ class Game {
             fisherman.sprite.setPosition(500,300);
             fishBounding.setOrigin(150,150);
             fishBounding.setRadius(100.0f);
+            if(!backgroundMusic.openFromFile("assets/background.ogg")){
 
+            }
+            backgroundMusic.play();
         }
         // ~Game();
         void run();
@@ -29,6 +33,7 @@ class Game {
         Fisherman fisherman;
         sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game"};
         sf::Text board;
+        sf::Music backgroundMusic;
                 
     private:
         void processKeys();
