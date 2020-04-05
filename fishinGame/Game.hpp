@@ -19,10 +19,10 @@ class Game {
             if(!backgroundMusic.openFromFile("assets/background.ogg")){
 
             }
-            backgroundMusic.play();
         }
         // ~Game();
         void run();
+        void Init();
         sf::CircleShape fishBounding;
         sf::Time lastFoodTime;
         sf::Clock clock;
@@ -35,6 +35,14 @@ class Game {
         sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game"};
         sf::Text board;
         sf::Music backgroundMusic;
+        enum sceneEnum{
+            STARTSCENE,
+            WINSCENE,
+            GAMESCENE
+        };
+        sceneEnum currentScene{STARTSCENE};
+        void startScene();
+        void gameScene();
                 
     private:
         void processKeys();

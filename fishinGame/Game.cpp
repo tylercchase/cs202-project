@@ -48,7 +48,17 @@ void Game::processKeys(){
     //Movement Using Controller
     bool connected = sf::Joystick::isConnected(0);
     unsigned int buttons = sf::Joystick::getButtonCount(0);
-    if (connected) {
+    switch (currentScene)
+    {
+    case STARTSCENE:
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+            currentScene = GAMESCENE;
+            backgroundMusic.play();
+
+        }
+        break;
+    case GAMESCENE:
+        if (connected) {
         //std::cout << "Joystick = " << buttons;
         if (sf::Joystick::isButtonPressed(0, 1)) {//down
             std::cout << "Button 1.\n";
@@ -216,6 +226,11 @@ void Game::processKeys(){
 
         }
     }
+        break;
+    default:
+        break;
+    }
+    
 }
 void Game::update(){
     int counter{0};
@@ -257,17 +272,37 @@ void Game::update(){
 }
 void Game::render(){
         window.clear();
-        window.draw(background.sprite);
-        for(auto &fish : fishSwarm){
-            window.draw(fish.sprite);
+        
+        switch (currentScene)
+        {
+        case STARTSCENE:
+            /* code */
+            break;
+        case GAMESCENE:
+            gameScene();
+            break;
+        default:
+            break;
         }
-        for(auto &food : foodGroup){
-            window.draw(food.sprite);
-        }
-        window.draw(fisherman.sprite);
-        window.draw(board);
+
         window.display();
 }
+
+void Game::startScene(){
+
+}
+void Game::gameScene(){
+    window.draw(background.sprite);
+    for(auto &fish : fishSwarm){
+        window.draw(fish.sprite);
+    }
+    for(auto &food : foodGroup){
+        window.draw(food.sprite);
+    }
+    window.draw(fisherman.sprite);
+    window.draw(board);
+}
+
 void Game::spawnFish(){
     fishSwarm.push_back(Fish{});
     srand (time(NULL));
