@@ -10,8 +10,11 @@ class Background{
         sf::Sprite sprite;
         sf::Texture backgroundTexture;
         sf::Texture eatinBackgroundTexture;
+        sf::Texture startBackground;
         Background();
         void activateEatinTime();
+        void startGame();
+        void menuScreen();
     private:
 };
 

@@ -7,7 +7,7 @@ void Game::run(){
     sf::Time timePerFrame = sf::seconds(1.0f/fps);
     window.setPosition(sf::Vector2i(100,100));
     sf::Font font;
-    if (!font.loadFromFile("BarlowSemiCondensed-Regular.ttf"))
+    if (!font.loadFromFile("assets/BarlowSemiCondensed-Regular.ttf"))
     {
         // error...
     }
@@ -54,7 +54,7 @@ void Game::processKeys(){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
             currentScene = GAMESCENE;
             backgroundMusic.play();
-
+            background.startGame();
         }
         break;
     case GAMESCENE:
@@ -233,6 +233,7 @@ void Game::processKeys(){
     
 }
 void Game::update(){
+    if(currentScene == GAMESCENE){
     int counter{0};
     for(auto& fish : fishSwarm){
         if(fish.sprite.getGlobalBounds().intersects(fisherman.sprite.getGlobalBounds())){
@@ -269,10 +270,12 @@ void Game::update(){
     if(eatin){
         window.setPosition(sf::Vector2i(100 + rand() % 5, 100 + rand() % 5));
     }
+    }
+
 }
 void Game::render(){
         window.clear();
-        
+        window.draw(background.sprite);
         switch (currentScene)
         {
         case STARTSCENE:
@@ -292,7 +295,6 @@ void Game::startScene(){
 
 }
 void Game::gameScene(){
-    window.draw(background.sprite);
     for(auto &fish : fishSwarm){
         window.draw(fish.sprite);
     }
