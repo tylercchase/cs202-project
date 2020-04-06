@@ -162,12 +162,15 @@
     <ClCompile Include="Food.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.hpp" />
     <ClInclude Include="Fish.hpp" />
     <ClInclude Include="Fisherman.hpp" />
+    <ClInclude Include="Food.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Sound.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

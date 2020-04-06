@@ -58,15 +58,45 @@ void Game::processKeys(){
         }
         break;
     case GAMESCENE:
-        if (connected) {
-        //std::cout << "Joystick = " << buttons;
+    if (connected) {
+        //Controller Joystick Movement
+        float xController = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+        float yController = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+
+        if (xController > 5.0f|| xController<-5.0f) {//Left & Right
+            std::cout << yController << "=y  " << xController << "=x. X-control\n";//Debugging
+            if (fishBounding.getPosition().x <= 0 || fishBounding.getPosition().x + 50 >= window.getSize().x) {
+            }else {
+                fishBounding.move(0.3 * (yController / 100.0f),0);
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(0.3 * (yController / 100.0f),0);
+                }
+            }
+            
+        }
+        if (yController > 5.0f || yController < -5.0f) {//Up & Down
+            std::cout << yController << "=y  " << xController << "=x. Y-control\n";//Debugging
+            if (fishBounding.getPosition().y <= 0 || fishBounding.getPosition().y + 50 >= window.getSize().y) {
+            }else {
+
+                fishBounding.move(0, 0.3 * (yController / 100));
+                for (auto& fish : fishSwarm) {
+                    fish.sprite.move(0, 0.3 * (yController / 100));
+                }
+                
+            }
+            
+        }
+        
+
+        //Controller button push Movement
         if (sf::Joystick::isButtonPressed(0, 1)) {//down
             std::cout << "Button 1.\n";
             if (fishBounding.getPosition().y + 50 >= window.getSize().y) {}
             else {
-                fishBounding.move(0, 0.3);
+                fishBounding.move(0, 0.3f);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(0, 0.3);
+                    fish.sprite.move(0, 0.3f);
                 }
             }
         }
@@ -77,9 +107,9 @@ void Game::processKeys(){
             std::cout << "Button 3.\n";
             if (fishBounding.getPosition().y <= 0) {}
             else {
-                fishBounding.move(0, -0.3);
+                fishBounding.move(0, -0.3f);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(0, -0.3);
+                    fish.sprite.move(0, -0.3f);
                 }
             }
         }
@@ -88,9 +118,9 @@ void Game::processKeys(){
             if (fishBounding.getPosition().x <= 0) {
             }
             else {
-                fishBounding.move(-0.3, 0);
+                fishBounding.move(-0.3f, 0);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(-.3, 0);
+                    fish.sprite.move(-.3f, 0);
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
                 }
@@ -108,35 +138,9 @@ void Game::processKeys(){
                 }
             }
         }
-        if (sf::Joystick::isButtonPressed(0, 6)) {
-            std::cout << "Button 6.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 7)) {
-            std::cout << "Button 7.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 8)) {
-            std::cout << "Button 8.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 9)) {
-            std::cout << "Button 9.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 10)) {
-            std::cout << "Button 10.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 11)) {
-            std::cout << "Button 11.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 12)) {
-            std::cout << "Button 12.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 13)) {
-            std::cout << "Button 13.\n";
-        }
-        if (sf::Joystick::isButtonPressed(0, 14)) {
-            std::cout << "Button 14.\n";
-        }
-    }
-    else {    //Fish Movement using keyboard
+        //NO USE for buttons 6-14
+        
+    }else {    //Fish Movement using keyboard
         //Right
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
@@ -149,8 +153,6 @@ void Game::processKeys(){
 
                 }
             }
-
-
         }
         //Left
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -186,7 +188,6 @@ void Game::processKeys(){
                     fish.sprite.move(0, -0.3);
                 }
             }
-
         }
         //Fisherman Movement
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
@@ -195,9 +196,7 @@ void Game::processKeys(){
             else {
                 fisherman.sprite.move(.13, 0);
             }
-
             fisherman.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
-
         }
         //Left
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::J)) {
