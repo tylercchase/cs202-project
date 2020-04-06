@@ -84,9 +84,6 @@ void Game::processKeys(){
                 for (auto& fish : fishSwarm) {
                     fish.sprite.move(0, 0.3 * (yController / 100.0));
                 }
-                
-            
-            
         }
         
 
