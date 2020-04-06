@@ -67,9 +67,9 @@ void Game::processKeys(){
             std::cout << yController << "=y  " << xController << "=x. X-control\n";//Debugging
             if (fishBounding.getPosition().x <= 0 || fishBounding.getPosition().x + 50 >= window.getSize().x) {
             }else {
-                fishBounding.move(0.3 * (yController / 100.0f),0);
+                fishBounding.move(0.3 * (xController / 100.0),0);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(0.3 * (yController / 100.0f),0);
+                    fish.sprite.move(0.3 * (xController / 100.0),0);
                 }
             }
             
@@ -79,9 +79,9 @@ void Game::processKeys(){
             if (fishBounding.getPosition().y <= 0 || fishBounding.getPosition().y + 50 >= window.getSize().y) {
             }else {
 
-                fishBounding.move(0, 0.3 * (yController / 100));
+                fishBounding.move(0, 0.3 * (yController / 100.0));
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(0, 0.3 * (yController / 100));
+                    fish.sprite.move(0, 0.3 * (yController / 100.0));
                 }
                 
             }
