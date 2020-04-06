@@ -65,26 +65,27 @@ void Game::processKeys(){
 
         if (xController > 5.0f|| xController<-5.0f) {//Left & Right
             std::cout << yController << "=y  " << xController << "=x. X-control\n";//Debugging
-            if (fishBounding.getPosition().x <= 0 || fishBounding.getPosition().x + 50 >= window.getSize().x) {
-            }else {
+            if (fishBounding.getPosition().x < 0|| fishBounding.getPosition().x + 50 > window.getSize().x) {
+            }
                 fishBounding.move(0.3 * (xController / 100.0),0);
                 for (auto& fish : fishSwarm) {
                     fish.sprite.move(0.3 * (xController / 100.0),0);
                 }
-            }
+            
             
         }
         if (yController > 5.0f || yController < -5.0f) {//Up & Down
             std::cout << yController << "=y  " << xController << "=x. Y-control\n";//Debugging
-            if (fishBounding.getPosition().y <= 0 || fishBounding.getPosition().y + 50 >= window.getSize().y) {
-            }else {
+            if (fishBounding.getPosition().y < 0 || fishBounding.getPosition().y + 50 > window.getSize().y) {
+                
+            }
 
                 fishBounding.move(0, 0.3 * (yController / 100.0));
                 for (auto& fish : fishSwarm) {
                     fish.sprite.move(0, 0.3 * (yController / 100.0));
                 }
                 
-            }
+            
             
         }
         
