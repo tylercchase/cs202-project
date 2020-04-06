@@ -32,7 +32,7 @@ class Game {
         std::vector<Food> foodGroup;
         bool eatin{false};
         Fisherman fisherman;
-        sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game"};
+        sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game",sf::Style::Titlebar|sf::Style::Close};
         sf::Text board;
         sf::Music backgroundMusic;
         enum sceneEnum{
