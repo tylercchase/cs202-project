@@ -94,7 +94,11 @@ void Game::processKeys(){
             else {
                 fishBounding.move(0, 0.3f);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(0, 0.3f);
+                    if(fish.sprite.getPosition().y + 50 >= window.getSize().y ){}
+                    else{
+                        fish.sprite.move(0,0.3);
+
+                    }
                 }
             }
         }
@@ -107,7 +111,10 @@ void Game::processKeys(){
             else {
                 fishBounding.move(0, -0.3f);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(0, -0.3f);
+                    if(fish.sprite.getPosition().y <= 0){}
+                    else{
+                        fish.sprite.move(0,-0.3);
+                    }
                 }
             }
         }
@@ -118,7 +125,10 @@ void Game::processKeys(){
             else {
                 fishBounding.move(-0.3f, 0);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(-.3f, 0);
+                    if(fish.sprite.getPosition().x <=0){}
+                    else{
+                        fish.sprite.move(-.3,0);
+                    }
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
                 }
@@ -130,7 +140,10 @@ void Game::processKeys(){
             else {
                 fishBounding.move(.3, 0);
                 for (auto& fish : fishSwarm) {
-                    fish.sprite.move(.3, 0);
+                     if(fish.sprite.getPosition().x + 50 >= window.getSize().x){}
+                    else{
+                        fish.sprite.move(.3,0);                        
+                    }
                     fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
                 }
