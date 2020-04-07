@@ -43,6 +43,7 @@ class Game {
         sceneEnum currentScene{STARTSCENE};
         void startScene();
         void gameScene();
+        void winScene();
                 
     private:
         void processKeys();

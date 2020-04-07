@@ -12,9 +12,9 @@ void Game::run(){
         // error...
     }
     board.setFont(font);
-    board.setCharacterSize(24);
+    board.setCharacterSize(64);
     board.setFillColor(sf::Color::Green);
-    board.setPosition(400,0);
+    board.setPosition(750,400);
 
 
     while (window.isOpen())
@@ -318,6 +318,8 @@ void Game::render(){
         case GAMESCENE:
             gameScene();
             break;
+        case WINSCENE:
+            winScene();
         default:
             break;
         }
@@ -338,7 +340,9 @@ void Game::gameScene(){
     window.draw(fisherman.sprite);
     window.draw(board);
 }
-
+void Game::winScene(){
+    window.draw(board);
+}
 void Game::spawnFish(){
     fishSwarm.push_back(Fish{});
     srand (time(NULL));
@@ -365,7 +369,11 @@ void Game::startEatinTime(){
 }
 void Game::fishWin(){
     board.setString("fish wins!");
+    background.winScreen();
+    currentScene = WINSCENE;
 }
 void Game::fishermanWin(){
     board.setString("fisherman wins!");
+    background.winScreen();
+    currentScene = WINSCENE;
 }
