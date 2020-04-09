@@ -67,11 +67,11 @@ void Game::processKeys(){
             std::cout << yController << "=y  " << xController << "=x. X-control\n";//Debugging
             if (fishBounding.getPosition().x < -1 || fishBounding.getPosition().x + 50 > window.getSize().x) {
             }else{
-                fishBounding.move(0.3 * (xController / 100.0),0);
+                fishBounding.move(fishSpeed * (xController / 100.0),0);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().x + 5 <=-1 || fish.sprite.getPosition().x + 50 >= window.getSize().x){}
                     else{
-                        fish.sprite.move(0.3 * (xController / 100.0),0);
+                        fish.sprite.move(fishSpeed * (xController / 100.0),0);
                     }
                 }
             }
@@ -83,12 +83,12 @@ void Game::processKeys(){
                 
             }
             else{
-                fishBounding.move(0, 0.3 * (yController / 100.0));
+                fishBounding.move(0, fishSpeed * (yController / 100.0));
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().x + 50 >= window.getSize().x || fish.sprite.getPosition().y +5 <= -1){
 
                     }else{
-                        fish.sprite.move(0, 0.3 * (yController / 100.0));
+                        fish.sprite.move(0, fishSpeed * (yController / 100.0));
 
                     }
                 }
@@ -103,11 +103,11 @@ void Game::processKeys(){
             std::cout << "Button 1.\n";
             if (fishBounding.getPosition().y + 50 >= window.getSize().y) {}
             else {
-                fishBounding.move(0, 0.3f);
+                fishBounding.move(0, fishSpeed);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().y + 50 >= window.getSize().y ){}
                     else{
-                        fish.sprite.move(0,0.3);
+                        fish.sprite.move(0,fishSpeed);
 
                     }
                 }
@@ -120,11 +120,11 @@ void Game::processKeys(){
             std::cout << "Button 3.\n";
             if (fishBounding.getPosition().y <= 0) {}
             else {
-                fishBounding.move(0, -0.3f);
+                fishBounding.move(0, -fishSpeed);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().y <= 0){}
                     else{
-                        fish.sprite.move(0,-0.3);
+                        fish.sprite.move(0,-fishSpeed);
                     }
                 }
             }
@@ -134,11 +134,11 @@ void Game::processKeys(){
             if (fishBounding.getPosition().x <= 0) {
             }
             else {
-                fishBounding.move(-0.3f, 0);
+                fishBounding.move(-fishSpeed, 0);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().x <=0){}
                     else{
-                        fish.sprite.move(-.3,0);
+                        fish.sprite.move(-fishSpeed,0);
                     }
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
@@ -149,11 +149,11 @@ void Game::processKeys(){
             std::cout << "Button 5.\n";
             if (fishBounding.getPosition().x + 50 >= window.getSize().x) {}
             else {
-                fishBounding.move(.3, 0);
+                fishBounding.move(fishSpeed, 0);
                 for (auto& fish : fishSwarm) {
                      if(fish.sprite.getPosition().x + 50 >= window.getSize().x){}
                     else{
-                        fish.sprite.move(.3,0);                        
+                        fish.sprite.move(fishSpeed,0);                        
                     }
                     fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
@@ -168,11 +168,11 @@ void Game::processKeys(){
         {
             if (fishBounding.getPosition().x + 50 >= window.getSize().x) {}
             else {
-                fishBounding.move(.3, 0);
+                fishBounding.move(fishSpeed, 0);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().x + 50 >= window.getSize().x){}
                     else{
-                        fish.sprite.move(.3,0);                        
+                        fish.sprite.move(fishSpeed,0);                        
                     }
                     fish.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
 
@@ -184,11 +184,11 @@ void Game::processKeys(){
             if (fishBounding.getPosition().x <= 0) {
             }
             else {
-                fishBounding.move(-0.3, 0);
+                fishBounding.move(-fishSpeed, 0);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().x <=0){}
                     else{
-                        fish.sprite.move(-.3,0);
+                        fish.sprite.move(-fishSpeed,0);
                     }
                     fish.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
 
@@ -199,11 +199,11 @@ void Game::processKeys(){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             if (fishBounding.getPosition().y + 50 >= window.getSize().y) {}
             else {
-                fishBounding.move(0, 0.3);
+                fishBounding.move(0, fishSpeed);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().y + 50 >= window.getSize().y ){}
                     else{
-                        fish.sprite.move(0,0.3);
+                        fish.sprite.move(0,fishSpeed);
 
                     }
                 }
@@ -215,11 +215,11 @@ void Game::processKeys(){
 
             }
             else {
-                fishBounding.move(0, -0.3);
+                fishBounding.move(0, -fishSpeed);
                 for (auto& fish : fishSwarm) {
                     if(fish.sprite.getPosition().y <= 0){}
                     else{
-                        fish.sprite.move(0,-0.3);
+                        fish.sprite.move(0,-fishSpeed);
                     }
                 }
             }
@@ -229,7 +229,7 @@ void Game::processKeys(){
         {
             if (fisherman.sprite.getPosition().x + 50 >= window.getSize().x) {}
             else {
-                fisherman.sprite.move(.13, 0);
+                fisherman.sprite.move(fishermanSpeed, 0);
             }
             fisherman.sprite.setTextureRect(sf::IntRect(300, 0, -300, 300));;
         }
@@ -238,7 +238,7 @@ void Game::processKeys(){
             if (fisherman.sprite.getPosition().x <= 0) {
             }
             else {
-                fisherman.sprite.move(-0.13, 0);
+                fisherman.sprite.move(-fishermanSpeed, 0);
             }
             fisherman.sprite.setTextureRect(sf::IntRect(0, 0, 300, 300));;
         }
@@ -246,7 +246,7 @@ void Game::processKeys(){
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
             if (fisherman.sprite.getPosition().y + 50 >= window.getSize().y) {}
             else {
-                fisherman.sprite.move(0, 0.13);
+                fisherman.sprite.move(0, fishermanSpeed);
             }
         }
         //Up
@@ -255,7 +255,7 @@ void Game::processKeys(){
 
             }
             else {
-                fisherman.sprite.move(0, -0.13);
+                fisherman.sprite.move(0, -fishermanSpeed);
             }
 
         }

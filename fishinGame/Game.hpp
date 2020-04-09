@@ -35,6 +35,8 @@ class Game {
         sf::RenderWindow window{sf::VideoMode(1500, 800), "Epic Fish Fighting Game",sf::Style::Titlebar|sf::Style::Close};
         sf::Text board;
         sf::Music backgroundMusic;
+        float fishSpeed{0.2};
+        float fishermanSpeed{0.15};
         enum sceneEnum{
             STARTSCENE,
             WINSCENE,
