@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tyler-fish
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: tyler-fish
+  
+  name: tyler-fish
+  labels:
+    app: tyler-fish
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: tyler-fish
+  template:
+    metadata:
+      labels:
+        app: tyler-fish
+    spec:
+      containers:
+      - name: tyler-fish
+        image: jigglebox/fish
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 42069
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: tyler-fish
+  name: tyler-fish
+  labels:
+    app: tyler-fish
+spec:
+  selector:
+    app: tyler-fish
+  type: LoadBalancer
+  ports:
+    - protocol: UDP
+      port: 42069
+      targetPort: 42069
+      name: udp-fish
