@@ -6,8 +6,9 @@ int main(){
     while(true){
         sf::UdpSocket socket;
         // bind the socket to a port
-        if (socket.bind(54000) != sf::Socket::Done)
+        if (socket.bind(42069) != sf::Socket::Done)
         {
+            std::cout << "bind error" << std::endl;
             // error...
         }
         std::string data = "";

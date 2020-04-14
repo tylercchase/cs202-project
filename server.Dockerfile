@@ -1,9 +1,13 @@
 FROM ubuntu:latest
 
-COPY . /usr/src/fishserver
+
+
+RUN apt update && apt install -y g++ libsfml-dev
+
+COPY ./multiplayer/server /usr/src/fishserver
 
 WORKDIR /usr/src/fishserver
 
-RUN sudo apt-get install libsfml-dev
-
-RUN sh build.sh
+RUN g++ -c *.cpp 
+RUN g++ *.o -o sfml-app -l sfml-network -lsfml-system 
+CMD ["./sfml-app"]
