@@ -45,7 +45,7 @@ spec:
     app: tyler-fish
   type: LoadBalancer
   ports:
-    - protocol: UDP
+    - protocol: TCP
       port: 42069
       targetPort: 42069
       name: udp-fish
