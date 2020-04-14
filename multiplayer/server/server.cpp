@@ -18,11 +18,9 @@ int main(){
         {
             // error...
         }
-        char data[100];
-        std::size_t recieved;
-        if(client.receive(data,100,recieved) != sf::Socket::Done){
+        char data[100] = "Hello World!";
+        if(client.send(data,100) != sf::Socket::Done){
             std::cout << "Couldn't send back" << std::endl;
         }
-        std::cout << data << std::endl;
         
 }

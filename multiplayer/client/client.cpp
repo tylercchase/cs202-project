@@ -11,12 +11,12 @@ int main(){
     }
     char data1[100];
     std::size_t received;
-std::cout << "VCD" << std::endl;
+    std::cout << "Connected" << std::endl;
     // TCP socket:
-    if (socket.send(data, 100) != sf::Socket::Done)
+    if (socket.receive(data1, 100, received) != sf::Socket::Done)
     {
         // error...
-        std::cout << "Couldn't send" << std::endl;
+        std::cout << "Couldn't recieve" << std::endl;
     }
-    std::cout << "ASD" ;
+    std::cout << "Couldn't recieve" ;
 }
