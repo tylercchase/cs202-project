@@ -1,20 +1,20 @@
-#include <SFML/Network/UdpSocket.hpp>
+#include <SFML/Network.hpp>
 #include <iostream>
 int main(){
-    sf::UdpSocket socket;
-
-    std::string data("Hello World!");
-
-    // bind the socket to a port
-    if (socket.bind(5000) != sf::Socket::Done)
+    char data[100] = "hello world!";
+    sf::TcpSocket socket;
+    sf::Socket::Status status = socket.connect("127.0.0.1", 42069);
+    if (status != sf::Socket::Done)
     {
-        std::cout << "bind error" << std::endl;
         // error...
     }
-    sf::IpAddress recipient = "127.0.0.1";
-    unsigned short port = 42069;
-    if (socket.send(data.c_str(), data.size(), recipient, port) != sf::Socket::Done)
+    char data1[100];
+    std::size_t received;
+
+    // TCP socket:
+    if (socket.receive(data1, 100, received) != sf::Socket::Done)
     {
-        std::cout << "send error" << std::endl;
+        // error...
     }
+    std::cout << data1 << std::endl;
 }
