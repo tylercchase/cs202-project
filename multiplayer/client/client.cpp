@@ -3,18 +3,19 @@
 int main(){
     char data[100] = "hello world!";
     sf::TcpSocket socket;
-    sf::Socket::Status status = socket.connect("127.0.0.1", 42069);
+    sf::Socket::Status status = socket.connect("10.244.2.58", 42069);
     if (status != sf::Socket::Done)
     {
+        std::cout << "Can't connect" << std::endl;
         // error...
     }
     char data1[100];
     std::size_t received;
 
     // TCP socket:
-    if (socket.receive(data1, 100, received) != sf::Socket::Done)
+    if (socket.send(data, 100) != sf::Socket::Done)
     {
         // error...
+        std::cout << "Couldn't send" << std::endl;
     }
-    std::cout << data1 << std::endl;
 }
