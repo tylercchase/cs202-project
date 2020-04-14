@@ -11,13 +11,12 @@ int main(){
             std::cout << "bind error" << std::endl;
             // error...
         }
-        std::string data = "";
-        data.resize(512);
+        char data[100];
         std::size_t received;
 
         sf::IpAddress sender;
         unsigned short port;
-        if (socket.receive(&data, 512, received, sender, port) != sf::Socket::Done)
+        if (socket.receive(&data, 100, received, sender, port) != sf::Socket::Done)
         {
             // error...
         }
